@@ -1,0 +1,32 @@
+<ul>
+  <li>
+    <a class="active" routerLink="/Nav1">
+      Home
+    </a>
+  </li>
+  <li>
+    <a routerLink="Nav1/app1">
+      Products
+    </a>
+  </li>
+  <li>
+    <a routerLink="Nav1/app2">
+      Services
+    </a>
+  </li>
+  <li>
+    <a routerLink="Nav1/cart">
+      Cart
+    </a>
+  </li>
+  <li>
+    <form #productForm="ngForm" class="form" (ngSubmit)="onSubmit()">
+      <div class="input">
+        <input type="text" required class="form-control" name="product" [(ngModel)]="product">
+      </div>
+      <div class="button">
+        <button class="btn btn-primary" type="submit">Search</button>
+      </div>
+    </form>
+  </li>
+</ul>

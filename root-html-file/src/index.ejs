@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src *  data: blob: 'unsafe-inline' 'unsafe-eval'; script-src * 'unsafe-inline' 'unsafe-eval'; connect-src * 'unsafe-inline'; img-src * data: blob: 'unsafe-inline'; frame-src *; style-src * data: blob: 'unsafe-inline'; font-src * data: blob: 'unsafe-inline';">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Navigation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="importmap-type" content="systemjs-importmap">
+  <!-- <script type="systemjs-importmap">
+    {
+      "imports": {
+        "react": "https://cdn.jsdelivr.net/npm/react@17.0.1/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@17.0.1/umd/react-dom.production.min.js",
+        "react-redux": "https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.2.4/react-redux.js"
+      }
+    }
+  </script> -->
+  <script type="systemjs-importmap">
+    {
+      "imports": {
+        "single-spa": "https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js",
+        "react": "https://cdn.jsdelivr.net/npm/react@16.13.1/umd/react.production.min.js",
+        "react-dom": "https://cdn.jsdelivr.net/npm/react-dom@16.13.1/umd/react-dom.production.min.js"
+      }
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/regenerator-runtime@0.13.7/runtime.min.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+  <!-- <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script> -->
+  <script type="systemjs-importmap">
+    {
+        "imports": {
+          "app1": "http://localhost:4201/main.js",
+          "app2": "http://localhost:4202/main.js",
+          "app3": "http://localhost:4204/main.js",
+          "app4": "http://localhost:4106/cardinalhealth-app4.js",
+          "app5": "http://localhost:4107/cardinalhealth-app5.js",
+          "navbar": "http://localhost:4300/main.js",
+          "single-spa": "https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.5.0/system/single-spa.min.js",
+          "single-spa-layout": "https://unpkg.com/single-spa-layout@1.0.0-beta.2/dist/system/single-spa-layout.min.js"
+        }
+      }
+    </script>
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/single-spa@5.9.0/lib/system/single-spa.min.js" as="script">
+  <script src="https://unpkg.com/zone.js@0.10.3/dist/zone.js"></script>
+  <!-- <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/single-spa/5.5.0/system/single-spa.min.js"
+    as="script" crossorigin="anonymous" /> -->
+  <!-- <script src='https://unpkg.com/core-js-bundle@3.1.4/minified.js'></script>
+ 
+  <script src="https://unpkg.com/import-map-overrides@1.15.1/dist/import-map-overrides.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/system.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/amd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-exports.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/4.0.0/extras/named-register.min.js"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/import-map-overrides@2.2.0/dist/import-map-overrides.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/system.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/systemjs@6.8.3/dist/extras/amd.js"></script>
+  <style type="text/css">
+    .wrapper {
+      display: flex;
+      text-align: center;
+      flex-direction: column;
+      min-height: 825px;
+    }
+
+    .wrapper>* {
+      padding: 3px;
+      margin: 2px;
+      /* flex: 1 100%; */
+      border-radius: 8px;
+      /* border-style: solid;
+      border-width: thin; */
+    }
+
+    .header {
+      /* background: lightgrey; */
+      height: 50px;
+      align-items: center;
+      justify-content: center;
+      /* flex: 1 100%; */
+    }
+
+    .main {
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      flex: 1 1 100%;
+    }
+
+    .Nav2 {
+      height: 585px;
+      display: flex;
+      flex-wrap: wrap;
+      flex: 1 1 100%;
+      background: #F0F0F0;
+    }
+
+    .main>* {
+      margin: 5px;
+    }
+
+    .sidebar1 {
+      min-height: 200px;
+      background: #F0F0F0;
+      flex: 1 1 10%;
+      min-width: 20ch;
+    }
+
+    .app {
+      min-height: 400px;
+      background: #F0F0F0;
+      flex: 1 1 60%;
+      min-width: 50ch;
+    }
+
+    .sidebar2 {
+      min-height: 200px;
+      background: lightblue;
+      flex: 1 1 10%;
+      min-width: 20ch;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer {
+      /* background: blue; */
+      height: 60px;
+      width: 100%;
+    }
+  </style>
+  <template id="single-spa-layout">
+    <single-spa-router>
+      <div class="wrapper">
+        <header class="header">
+          <application name="navbar"></application>
+        </header>
+        <route path="Nav1">
+          <div class="main">
+            <!-- <div class="sidebar1">
+              <application name="sidebar1"></application>
+            </div> -->
+            <div class="app">
+              <h2>Plugin Container</h2>
+              <route path="app1">
+                <application name="app1"></application>
+                <application name="app4"></application>
+                <application name="app5"></application>
+              </route>
+              <route path="app2">
+                <application name="app2"></application>
+              </route>
+              <route path="cart">
+                <application name="app5"></application>
+              </route>
+              <route path="products/:id">
+                <application name="app5"></application>
+              </route>
+            </div>
+            <!-- <div class="sidebar2">SIDEBAR2</div> -->
+          </div>
+        </route>
+        <route path="Nav2">
+          <div class="main">
+            <!-- <div class="sidebar1">
+              <application name="sidebar1"></application>
+            </div> -->
+            <div class="app">
+              <application name="app2"></application>
+            </div>
+          </div>
+        </route>
+        <!-- <div class="Nav1">
+          <route path="Nav1">
+            <div class="main">
+              <div class="sidebar1">
+                <application name="sidebar1"></application>
+              </div>
+              <div class="app">
+                <route path="./app1">
+                  <application name="app1"></application>
+                </route>
+                <route path="./app2">
+                  <application name="app2"></application>
+                </route>
+              </div>
+              <div class="sidebar2">sidebar2</div>
+            </div>
+          </route> -->
+        <!-- <route path="Nav2">
+            <route path="Nav2">
+              <div class="main">
+                <div class="sidebar1">
+                  <div class="sidebar1">sidebar2</div>
+                </div>
+                <div class="app">
+
+                </div>
+                <div class="sidebar2">sidebar2</div>
+              </div>
+            </route>
+          </route> -->
+        <footer class="footer">
+          <application name="app3"></application>
+        </footer>
+      </div>
+      </div>
+    </single-spa-router>
+  </template>
+</head>
+
+<body>
+  <script>
+    Promise.all([System.import('single-spa'), System.import('single-spa-layout')]).then(([singleSpa,
+      singleSpaLayout
+    ]) => {
+      const {
+        constructApplications,
+        constructLayoutEngine,
+        constructRoutes
+      } = singleSpaLayout;
+      const {
+        registerApplication,
+        start
+      } = singleSpa;
+
+      const routes = constructRoutes(document.querySelector('#single-spa-layout'));
+      const applications = constructApplications({
+        routes,
+        loadApp({
+          name
+        }) {
+          return System.import(name);
+        },
+      });
+      const layoutEngine = constructLayoutEngine({
+        routes,
+        applications
+      });
+      applications.forEach(registerApplication);
+
+      start();
+    });
+  </script>
+  <import-map-overrides-full></import-map-overrides-full>
+</body>
+
+</html>
